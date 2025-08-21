@@ -1,12 +1,13 @@
 {
+  "version": 3,
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "config": { "distDir": "out" }
     }
   ],
-  "ignoredBuildStep": "exit 0"
+  "routes": [
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
 }

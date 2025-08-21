@@ -29,10 +29,10 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           navigator.userAgent,
         )
 
-        // Remove the incrementViews call since we'll handle it differently
+        // ✅ Increment views (بدون supabase.raw)
         const { error: viewError } = await supabase
           .from("articles")
-          .update({ views: supabase.raw("views + 1") })
+          .update({ views: (article.views ?? 0) + 1 })
           .eq("id", article.id)
 
         if (viewError) {
